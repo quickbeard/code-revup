@@ -1,0 +1,41 @@
+[project]
+name = "code-revup"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi[standard]>=0.142.2",
+]
+
+[project.scripts]
+code-revup = "code_revup:main"
+
+[build-system]
+requires = ["uv_build>=0.12.21,<0.13.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "ruff>=0.16.9",
+]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.format]
+quote-style = "single"
+indent-style = "tab"
+docstring-code-format = true
+
+[tool.ruff.lint]
+select = [
+    "E", "F",   # pycodestyle errors + pyflakes (Ruff's defaults)
+    "I",        # import sorting (replaces isort)
+    "B",        # bugbear: likely bugs, e.g. mutable default args
+    "UP",       # pyupgrade: modern syntax for your Python version
+    "SIM",      # simplifications
+    "ASYNC",    # async pitfalls, e.g. blocking calls inside async def
+    "FAST",     # FastAPI-specific rules
+    "RUF",      # Ruff's own rules
+]
