@@ -7,9 +7,9 @@ from pathlib import Path
 from langchain_core.messages import AIMessage
 from pydantic import TypeAdapter
 
-from code_revup.github_fetch import fetch_pr
 from code_revup.graph import graph
 from code_revup.models import FinalReview, PullRequest, ReviewerReport
+from code_revup.platforms.github import fetch_pr
 from code_revup.render import render_markdown
 
 

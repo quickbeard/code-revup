@@ -12,10 +12,10 @@ from langchain.agents.structured_output import ProviderStrategy
 from langchain_core.messages import HumanMessage
 from langchain_core.tools import BaseTool
 
+from code_revup.agents.tools import make_lint_tools, make_security_tools
 from code_revup.diff import FilePatch, annotate_patch
 from code_revup.llm import agent_middleware, get_model
 from code_revup.models import PullRequest, ReviewerName, ReviewerOutput, ReviewerReport
-from code_revup.tools import make_lint_tools, make_security_tools
 
 _MAX_DESCRIPTION_CHARS = 4_000
 
