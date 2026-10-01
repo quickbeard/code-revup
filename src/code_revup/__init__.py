@@ -1,2 +1,3 @@
-def main() -> None:
-    print("Hello from code-revup!")
+from code_revup.cli import main
+
+__all__ = ['main']
