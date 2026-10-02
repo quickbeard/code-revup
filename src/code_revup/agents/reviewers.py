@@ -8,6 +8,7 @@ from deepagents import create_deep_agent
 from deepagents.backends import CompositeBackend, FilesystemBackend, StateBackend
 from deepagents.backends.utils import create_file_data
 from deepagents.middleware.filesystem import FilesystemPermission
+from langchain.agents.middleware import TodoListMiddleware
 from langchain.agents.structured_output import ProviderStrategy
 from langchain_core.messages import HumanMessage
 from langchain_core.tools import BaseTool
@@ -127,7 +128,8 @@ def build_reviewer(spec: ReviewerSpec, repo_dir: Path | None):
 		model=get_model(),
 		tools=tools,
 		system_prompt=system_prompt,
-		middleware=agent_middleware(),
+		# create_deep_agent doesn't include the write_todos planning tool by default, so add it.
+		middleware=[TodoListMiddleware(), *agent_middleware()],
 		backend=CompositeBackend(default=StateBackend(), routes=routes),
 		permissions=[
 			FilesystemPermission(operations=['write'], paths=['/repo/**', '/diff/**'], mode='deny'),
